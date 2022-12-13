@@ -57,21 +57,18 @@ const EmptyList = styled.p`
 
 export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn, firebaseDatabase }) => {
 
-  const writeUserData = (userId, name, email, order) => {
-    const db = firebaseDatabase;
-    set(ref(db, 'users/' + userId), {
-      userName: name,
+  function writeUserData(userId, name, email, order) {
+    set(ref(firebaseDatabase, 'orders/' + userId), {
+      username: name,
       email: email,
       order,
+    }).then(() => {
+      console.log('Data saved successfully!');
     })
-      .then(() => {
-        console.log('Data saved successfully!');
-      })
       .catch((error) => {
         console.log('The write failed...');
       });
   }
-
   const sendOrder = () => {
     console.log('orders: ', orders)
     const newOrder = orders.map(projection(rulesData))
