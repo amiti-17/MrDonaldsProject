@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import trash from '../../image/trash.svg';
 import { toLocaleCurrency } from '../functions/secondaryfunctions';
@@ -8,6 +8,7 @@ const OrderItemStyled = styled.li`
   display: flex;
   margin: 15px 0px 0px 0px;
   flex-wrap: wrap;
+  cursor: pointer;
 `;
 
 const ItemName = styled.span`
@@ -40,28 +41,28 @@ const Toppings = styled.div`
   width: 100%;
 `;
 
-export const OrderListItem = ({ order, setOrders, orders }) => {
+export const OrderListItem = ({ order, /*setOrders, orders*/ index, deleteItem, setOpenItem }) => {
 
-  const deleteItem = (e) => {
-    const newOrders = orders.slice();
-    const index = orders.indexOf(order);
-    newOrders.splice(index, 1)
-    // const newOrder = orders[index + 1] ? orders.concat(orders.slice(0, index), orders.slice(index + 1)) : orders.slice(0, index);
-    setOrders(newOrders)
+  // const deleteItem = (e) => {
+  //   const newOrders = orders.slice();
+  //   const index = orders.indexOf(order);
+  //   newOrders.splice(index, 1)
+  //   // const newOrder = orders[index + 1] ? orders.concat(orders.slice(0, index), orders.slice(index + 1)) : orders.slice(0, index);
+  //   setOrders(newOrders)
 
-  }
+  // }
+
+  const refDeleteButton = useRef(null);
 
   const topping = order.topping.filter(dop => dop.checked).map(dop => dop.name).join(', ');
-  console.log('order: ', order)
-  console.log('orders: ', orders)
-  console.log('setOrders: ', setOrders)
   return (
     <>
-      < OrderItemStyled key={order.name}>
+      {/* < OrderItemStyled key={order.name} onClick={(e) => (e.target.tagName == 'BUTTON') ? {} : setOpenItem({ ...order, index })}> */}
+      < OrderItemStyled key={order.name} onClick={(e) => (e.target !== refDeleteButton.current) && setOpenItem({ ...order, index })}>
         <ItemName>{order.name} {order.choice}</ItemName>
         <span>{order.count}</span>
         <ItemPrice>{toLocaleCurrency(totalPriceItems(order))}</ItemPrice>
-        <TrashButton onClick={deleteItem} />
+        <TrashButton ref={refDeleteButton} onClick={() => deleteItem(index)} />
         {order.topping.filter(dop => dop.checked).length > 0 && order.topping ?
           <Toppings >
             {topping}

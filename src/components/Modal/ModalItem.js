@@ -77,15 +77,23 @@ const TotalPriceItem = styled.div`
 
 export const ModalItem = ({ setOpenItem, openItem, orders, setOrders }) => {
 
-  const counter = useCount();
+  const counter = useCount(openItem.count);
   const toppings = useToppings(openItem);
   const choices = useChoices(openItem);
+  const isEdit = openItem.index > -1;
+
+  const editOrder = (e) => {
+    const newOrders = [...orders];
+    newOrders[openItem.index] = order;
+    setOrders(newOrders);
+    setOpenItem(null)
+  }
 
   const closeModal = e => {
     if (e.target.id === 'overlay') {
       setOpenItem(null);
     }
-  }
+  };
 
   const order = {
     ...openItem,
@@ -108,14 +116,14 @@ export const ModalItem = ({ setOpenItem, openItem, orders, setOrders }) => {
             <NameOfItem>{openItem.name}</NameOfItem>
             <PriceOfItem>{toLocaleCurrency(openItem.price)}</PriceOfItem>
           </HeaderContent>
-          <CountItem {...counter} />
+          <CountItem orders count={order.count} setCount={counter.setCount} onChange={counter.onChange} />
           {openItem.toppings && <Toppings {...toppings}></Toppings>}
           {openItem.choices && <Choices {...choices} openItem={openItem}></Choices>}
           <TotalPriceItem>
             <span>Ціна: </span>
             <span>{toLocaleCurrency(totalPriceItems(order))}</span>
           </TotalPriceItem>
-          <ButtonCheckout onClick={addToOrder} disabled={order.choices && !order.choice}>Добавить</ButtonCheckout>
+          <ButtonCheckout onClick={isEdit ? editOrder : addToOrder} disabled={order.choices && !order.choice}>{isEdit ? "Редагувати" : "Додати"}</ButtonCheckout>
         </Content>
       </Modal>
     </OverLay >

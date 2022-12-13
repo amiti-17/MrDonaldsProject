@@ -4,7 +4,8 @@ import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { OrderListItem } from './OrderListItem';
 import { totalPriceItems } from '../functions/secondaryfunctions';
 import { toLocaleCurrency } from '../functions/secondaryfunctions';
-
+import { projection } from '../functions/secondaryfunctions';
+import { ref, set } from "firebase/database";
 
 const OrderStyled = styled.section`
   position: fixed;
@@ -54,7 +55,49 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-export const Order = ({ orders, setOrders }) => {
+export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn, firebaseDatabase }) => {
+
+  const writeUserData = (userId, name, email, order) => {
+    const db = firebaseDatabase;
+    set(ref(db, 'users/' + userId), {
+      userName: name,
+      email: email,
+      order,
+    })
+      .then(() => {
+        console.log('Data saved successfully!');
+      })
+      .catch((error) => {
+        console.log('The write failed...');
+      });
+  }
+
+  const sendOrder = () => {
+    console.log('orders: ', orders)
+    const newOrder = orders.map(projection(rulesData))
+    console.log('newOrder: ', newOrder)
+
+
+
+    writeUserData(authentication.displayName, authentication.displayName, authentication.email, newOrder)
+  };
+
+  const rulesData = {
+    name: ['name'],
+    price: ['price'],
+    count: ['count'],
+    toppings: ['topping', arr => arr.filter(obj => obj.checked), arr => arr.map(obj => obj.name), arr => arr.length ? arr : 'no toppings'],
+    choice: ['choice', item => item ? item : 'no choices'],
+  }
+
+  const deleteItem = index => {
+
+    // const newOrders = orders.filter((item, i) => index !== i);
+
+    const newOrders = [...orders];
+    newOrders.splice(index, 1);
+    setOrders(newOrders)
+  }
 
   const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
 
@@ -66,7 +109,15 @@ export const Order = ({ orders, setOrders }) => {
       <OrderContent>
         {orders.length ?
           <OrderList>
-            {orders.map(order => <OrderListItem order={order} orders={orders} setOrders={setOrders} />)}
+            {orders.map((order, index) =>
+              <OrderListItem
+                key={index}
+                order={order}
+                orders={orders}
+                setOrders={setOrders}
+                deleteItem={deleteItem}
+                index={index}
+                setOpenItem={setOpenItem} />)}
           </OrderList> :
           <EmptyList>Список заказов - пуст</EmptyList>}
       </OrderContent>
@@ -75,7 +126,13 @@ export const Order = ({ orders, setOrders }) => {
         <span>{totalCounter}</span>
         <TotalPrice>{toLocaleCurrency(total)}</TotalPrice>
       </Total>
-      <ButtonCheckout></ButtonCheckout>
+      <ButtonCheckout onClick={() => {
+        if (authentication) {
+          sendOrder()
+        } else {
+          logIn();
+        }
+      }}>Замовити</ButtonCheckout>
     </OrderStyled>
   )
 }
