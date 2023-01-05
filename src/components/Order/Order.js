@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { OrderListItem } from './OrderListItem';
-import { totalPriceItems } from '../functions/secondaryfunctions';
-import { toLocaleCurrency } from '../functions/secondaryfunctions';
-import { projection } from '../functions/secondaryfunctions';
-import { ref, set } from "firebase/database";
+import { totalPriceItems } from '../Functions/secondaryfunctions';
+import { toLocaleCurrency } from '../Functions/secondaryfunctions';
+import { Context } from '../Functions/context';
 
 const OrderStyled = styled.section`
   position: fixed;
@@ -23,7 +22,7 @@ const OrderStyled = styled.section`
 `;
 
 
-const OrderTitle = styled.h2`
+export const OrderTitle = styled.h2`
   text-align: center;
   margin-bottom: 30px;
 `;
@@ -37,7 +36,7 @@ const OrderList = styled.ul`
 
 `;
 
-const Total = styled.div`
+export const Total = styled.div`
   display: flex;
   margin: 0px 35px 30px;
   & span:first-child {
@@ -45,7 +44,7 @@ const Total = styled.div`
   }
 `;
 
-const TotalPrice = styled.span`
+export const TotalPrice = styled.span`
   text-align: rigth:
   min-width: 65px;
   margin-left: 20px;
@@ -55,50 +54,24 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn, firebaseDatabase }) => {
-
-  function writeUserData(userId, name, email, order) {
-    set(ref(firebaseDatabase, 'orders/' + userId), {
-      username: name,
-      email: email,
-      order,
-    }).then(() => {
-      console.log('Data saved successfully!');
-    })
-      .catch((error) => {
-        console.log('The write failed...');
-      });
-  }
-  const sendOrder = () => {
-    console.log('orders: ', orders)
-    const newOrder = orders.map(projection(rulesData))
-    console.log('newOrder: ', newOrder)
-
-
-
-    writeUserData(authentication.displayName, authentication.displayName, authentication.email, newOrder)
-  };
-
-  const rulesData = {
-    name: ['name'],
-    price: ['price'],
-    count: ['count'],
-    toppings: ['topping', arr => arr.filter(obj => obj.checked), arr => arr.map(obj => obj.name), arr => arr.length ? arr : 'no toppings'],
-    choice: ['choice', item => item ? item : 'no choices'],
-  }
-
+export const Order = () => {
+  const {
+    orders: { orders, setOrders },
+    openItem: { setOpenItem },
+    orderConfirm: { setOpenOrderConfirm },
+    auth: { authentication, logIn }
+  } = useContext(Context)
   const deleteItem = index => {
-
     // const newOrders = orders.filter((item, i) => index !== i);
-
     const newOrders = [...orders];
     newOrders.splice(index, 1);
-    setOrders(newOrders)
+    setOrders(newOrders);
   }
 
   const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
 
   const totalCounter = orders.reduce((result, order) => order.count + result, 0);
+  let isTotalCounterNOTzero = (totalCounter) => totalCounter ? true : false
 
   return (
     <OrderStyled>
@@ -110,26 +83,30 @@ export const Order = ({ orders, setOrders, setOpenItem, authentication, logIn, f
               <OrderListItem
                 key={index}
                 order={order}
-                orders={orders}
-                setOrders={setOrders}
+                // orders={orders}
+                // setOrders={setOrders}
                 deleteItem={deleteItem}
                 index={index}
                 setOpenItem={setOpenItem} />)}
           </OrderList> :
           <EmptyList>Список заказов - пуст</EmptyList>}
       </OrderContent>
-      <Total>
-        <span>Итого</span>
-        <span>{totalCounter}</span>
-        <TotalPrice>{toLocaleCurrency(total)}</TotalPrice>
-      </Total>
-      <ButtonCheckout onClick={() => {
-        if (authentication) {
-          sendOrder()
-        } else {
-          logIn();
-        }
-      }}>Замовити</ButtonCheckout>
+      {
+        isTotalCounterNOTzero(totalCounter) && <Total>
+          <span>Итого</span>
+          <span>{totalCounter}</span>
+          <TotalPrice>{toLocaleCurrency(total)}</TotalPrice>
+        </Total>
+      }
+      {
+        isTotalCounterNOTzero(totalCounter) && <ButtonCheckout onClick={() => {
+          if (authentication) {
+            setOpenOrderConfirm(true)
+          } else {
+            logIn();
+          }
+        }}>Замовити</ButtonCheckout>
+      }
     </OrderStyled>
   )
 }

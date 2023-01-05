@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { toLocaleCurrency } from '../functions/secondaryfunctions';
+import { toLocaleCurrency } from '../Functions/secondaryfunctions';
 
 const List = styled.ul`
   display: flex;

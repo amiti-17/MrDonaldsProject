@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import trash from '../../image/trash.svg';
-import { toLocaleCurrency } from '../functions/secondaryfunctions';
-import { totalPriceItems } from '../functions/secondaryfunctions';
+import { toLocaleCurrency } from '../Functions/secondaryfunctions';
+import { totalPriceItems } from '../Functions/secondaryfunctions';
 
 const OrderItemStyled = styled.li`
   display: flex;

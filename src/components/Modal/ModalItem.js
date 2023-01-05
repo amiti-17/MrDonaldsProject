@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
 import { CountItem } from './CountItem';
 import { useCount } from '../Hooks/useCount';
-import { toLocaleCurrency } from '../functions/secondaryfunctions';
-import { totalPriceItems } from '../functions/secondaryfunctions';
+import { toLocaleCurrency } from '../Functions/secondaryfunctions';
+import { totalPriceItems } from '../Functions/secondaryfunctions';
 import { Toppings } from './Toppings';
 import { Choices } from './Choices';
 import { useToppings } from '../Hooks/useToppings';
 import { useChoices } from '../Hooks/useChoices';
 
-const OverLay = styled.div`
+export const OverLay = styled.div`
   position: fixed;
   display: flex;
   justify-content: center;
@@ -90,7 +90,7 @@ export const ModalItem = ({ setOpenItem, openItem, orders, setOrders }) => {
   }
 
   const closeModal = e => {
-    if (e.target.id === 'overlay') {
+    if (e.target.id === 'overlayModalItem') {
       setOpenItem(null);
     }
   };
@@ -104,11 +104,13 @@ export const ModalItem = ({ setOpenItem, openItem, orders, setOrders }) => {
 
   const addToOrder = (e) => {
     setOrders([...orders, order]);
+    // console.log('openItem B:', openItem)
     setOpenItem(null);
+    // console.log('openItem A:', openItem)
   }
 
   return (
-    <OverLay id="overlay" onClick={closeModal}>
+    <OverLay id="overlayModalItem" onClick={closeModal}>
       <Modal>
         <Banner img={openItem.img} />
         <Content>

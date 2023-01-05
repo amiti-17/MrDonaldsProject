@@ -7,19 +7,21 @@ export function useAuth(authFirebase) {
 
   const provider = new GoogleAuthProvider();
 
-  console.log('authFirebase: ', authFirebase)
+  // console.log('authFirebase.currentUser: ', authFirebase.currentUser)
 
   const logIn = () => {
     signInWithPopup(authFirebase, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        console.log('credential:', credential)
-        const token = credential.accessToken;
-        console.log('token:', token)
+        // const credential = GoogleAuthProvider.credentialFromResult(result);
+        // console.log('credential:', credential)
+        // const token = credential.accessToken;
+        // console.log('token:', token)
         // The signed-in user info.
-        const user = result.user;
-        console.log('user:', user);
+        // const user = result.user;
+        // console.log('user:', user);
+        // Sign-in successful.
+        console.warn('Sign - in successful.')
 
       }).catch((e) => {
         const errorCode = e.code;
@@ -50,12 +52,12 @@ export function useAuth(authFirebase) {
     onAuthStateChanged(authFirebase, (user) => {
       if (user) {
         setAuthentication(user);
-        console.log('user: ', user);
+        // console.log('user: ', user);
       } else {
         setAuthentication(null);
       }
     })
-  }, [authentication])
+  }, [authFirebase, authentication])
 
   return { authentication, logIn, logOut };
 }

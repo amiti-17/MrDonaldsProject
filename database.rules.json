@@ -4,6 +4,9 @@
     "orders": {
       ".write": true,
       ".read": true
+    },
+    "goods": {
+      ".read": true
     }
   }
 }
