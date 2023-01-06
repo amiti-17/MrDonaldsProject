@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { ListItem } from './ListItem';
 import { BannerMenu } from './BannerMenu';
 import { useFetch } from '../Hooks/useFetch';
-import { Context } from '../Functions/context';
 // import { useDB } from '../Hooks/useDB';
 
 const MenuStyled = styled.main`
@@ -28,7 +27,6 @@ export const Menu = () => {
 
 
   const dbMenu = res.response
-  const { openItem: { setOpenItem } } = useContext(Context)
   return (
     <MenuStyled>
       <BannerMenu />
@@ -37,11 +35,11 @@ export const Menu = () => {
           <>
             <SectionMenu>
               <h2>Бургеры</h2>
-              <ListItem itemList={dbMenu.burger} setOpenItem={setOpenItem} />
+              <ListItem itemList={dbMenu.burger} />
             </SectionMenu>
             <SectionMenu>
               <h2>Закуски / Напитки</h2>
-              <ListItem itemList={dbMenu.other} setOpenItem={setOpenItem} />
+              <ListItem itemList={dbMenu.other} />
             </SectionMenu>
           </>
           : res.error ?

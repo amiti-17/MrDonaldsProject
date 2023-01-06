@@ -57,7 +57,6 @@ const EmptyList = styled.p`
 export const Order = () => {
   const {
     orders: { orders, setOrders },
-    openItem: { setOpenItem },
     orderConfirm: { setOpenOrderConfirm },
     auth: { authentication, logIn }
   } = useContext(Context)
@@ -71,7 +70,6 @@ export const Order = () => {
   const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
 
   const totalCounter = orders.reduce((result, order) => order.count + result, 0);
-  let isTotalCounterNOTzero = (totalCounter) => totalCounter ? true : false
 
   return (
     <OrderStyled>
@@ -86,26 +84,25 @@ export const Order = () => {
                 // orders={orders}
                 // setOrders={setOrders}
                 deleteItem={deleteItem}
-                index={index}
-                setOpenItem={setOpenItem} />)}
+                index={index} />)}
           </OrderList> :
           <EmptyList>Список заказов - пуст</EmptyList>}
       </OrderContent>
       {
-        isTotalCounterNOTzero(totalCounter) && <Total>
-          <span>Итого</span>
-          <span>{totalCounter}</span>
-          <TotalPrice>{toLocaleCurrency(total)}</TotalPrice>
-        </Total>
-      }
-      {
-        isTotalCounterNOTzero(totalCounter) && <ButtonCheckout onClick={() => {
-          if (authentication) {
-            setOpenOrderConfirm(true)
-          } else {
-            logIn();
-          }
-        }}>Замовити</ButtonCheckout>
+        orders.length ?
+          (<><Total>
+            <span>Итого</span>
+            <span>{totalCounter}</span>
+            <TotalPrice>{toLocaleCurrency(total)}</TotalPrice>
+          </Total>
+            <ButtonCheckout onClick={() => {
+              if (authentication) {
+                setOpenOrderConfirm(true)
+              } else {
+                logIn();
+              }
+            }}>Замовити</ButtonCheckout></>)
+          : null
       }
     </OrderStyled>
   )

@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import styled from 'styled-components';
 import trash from '../../image/trash.svg';
 import { toLocaleCurrency } from '../Functions/secondaryfunctions';
 import { totalPriceItems } from '../Functions/secondaryfunctions';
+import { Context } from '../Functions/context';
 
 const OrderItemStyled = styled.li`
   display: flex;
@@ -41,7 +42,7 @@ const Toppings = styled.div`
   width: 100%;
 `;
 
-export const OrderListItem = ({ order, /*setOrders, orders*/ index, deleteItem, setOpenItem }) => {
+export const OrderListItem = ({ order, /*setOrders, orders*/ index, deleteItem }) => {
 
   // const deleteItem = (e) => {
   //   const newOrders = orders.slice();
@@ -51,6 +52,8 @@ export const OrderListItem = ({ order, /*setOrders, orders*/ index, deleteItem, 
   //   setOrders(newOrders)
 
   // }
+
+  const { openItem: { setOpenItem } } = useContext(Context)
 
   const refDeleteButton = useRef(null);
 

@@ -42,9 +42,9 @@ function App() {
     <Context.Provider value={{ auth, openItem, orders, orderConfirm, database }}>
       <GlobalStyle />
       <NavBar />
-      <Order {...orders} {...openItem} {...auth}  {...orderConfirm} />
+      <Order />
       <Menu />
-      {openItem.openItem && <ModalItem {...orders} {...openItem} />}
+      {openItem.openItem && <ModalItem />}
       {orderConfirm.openOrderConfirm && <OrderConfirm />}
     </Context.Provider>
   );
