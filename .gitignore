@@ -8,6 +8,11 @@
 # testing
 /coverage
 
+# sensetive
+/functions/config.js
+.env
+/functions/.env
+
 # production
 /build
 
