@@ -7,18 +7,17 @@ import { toLocaleCurrency } from '../Functions/secondaryfunctions';
 import { Context } from '../Functions/context';
 
 const OrderStyled = styled.section`
-  position: fixed;
+  position: sticky;
+  top: 80px;
   display: flex;
   flex-direction: column;
-  top: 80px;
-  left: 0;
   background: white;
   min-width: 380px;
   max-width: 380px;
-  height: calc(100% - 80px);
+  height: 68vh;
   box-shadow: 3px 4px 5px rgba(0,0,0, 0.25);
   padding: 20px;
-  
+  overflow: auto;
 `;
 
 

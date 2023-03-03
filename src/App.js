@@ -5,7 +5,6 @@ import { GlobalStyle } from './components/Style/GlobalSyle';
 import { NavBar } from './components/NavBar/NavBar';
 import { Menu } from './components/Menu';
 import { ModalItem } from './components/Modal/ModalItem';
-import { Order } from './components/Order/Order';
 import { useOpenItem } from './components/Hooks/useOpenItem';
 import { useOrders } from './components/Hooks/useOrders';
 import { useAuth } from './components/Hooks/useAuth';
@@ -14,7 +13,9 @@ import { useTitle } from './components/Hooks/useTitle';
 import { OrderConfirm } from './components/Order/OrderConfirm';
 import { useOrderConfirm } from './components/Hooks/useOrderConfirm';
 import { Context } from './components/Functions/context';
-
+import { usePopUp } from './components/Hooks/usePopUp';
+import BagIcon from './components/Order/MobileIconOrder';
+import { isMobile } from 'react-device-detect';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBa7qlvpIJ3PU_5esIyF6xMPjs8apMQXGs",
@@ -31,6 +32,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 function App() {
 
   const openItem = useOpenItem();
+  const { PopUp, setPopUp } = usePopUp();
   const orders = useOrders();
   useTitle(openItem.openItem);
   const authFirebase = getAuth(firebaseApp);
@@ -39,13 +41,14 @@ function App() {
   const orderConfirm = useOrderConfirm()
 
   return (
-    <Context.Provider value={{ auth, openItem, orders, orderConfirm, database }}>
+    <Context.Provider value={{ auth, openItem, orders, orderConfirm, database, setPopUp }}>
       <GlobalStyle />
       <NavBar />
-      <Order />
       <Menu />
       {openItem.openItem && <ModalItem />}
+      {isMobile && <BagIcon>Click</BagIcon>}
       {orderConfirm.openOrderConfirm && <OrderConfirm />}
+      {PopUp && <PopUp />}
     </Context.Provider>
   );
 }

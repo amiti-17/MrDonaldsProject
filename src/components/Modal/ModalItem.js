@@ -24,7 +24,7 @@ export const OverLay = styled.div`
   z-index: 20;
 `;
 
-const Modal = styled.div`
+export const Modal = styled.div`
   background-color: #fff;
   width: 600px;
   height: 600px;

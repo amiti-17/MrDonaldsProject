@@ -3,18 +3,30 @@ import styled from 'styled-components';
 import { ListItem } from './ListItem';
 import { BannerMenu } from './BannerMenu';
 import { useDB } from '../Hooks/useDB';
+import { Order } from '../Order/Order';
+import { isMobile } from 'react-device-detect';
 
 const MenuStyled = styled.main`
-  background-color: #ccc;
+  background-color: #fff;
   margin-top: 80px;
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+`;
+
+const FlexBoxMobile = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const SectionMenu = styled.section`
   padding: 30px;
 `;
 
-export const Menu = () => {
+const SectionContainer = isMobile ? FlexBoxMobile : FlexBox;
 
+export const Menu = () => {
 
   const res = useDB()
 
@@ -23,22 +35,25 @@ export const Menu = () => {
   return (
     <MenuStyled>
       <BannerMenu />
-      {
-        res.response ?
-          <>
-            <SectionMenu>
-              <h2>Бургеры</h2>
-              <ListItem itemList={dbMenu.burger} />
-            </SectionMenu>
-            <SectionMenu>
-              <h2>Закуски / Напитки</h2>
-              <ListItem itemList={dbMenu.other} />
-            </SectionMenu>
-          </>
-          : res.error ?
-            <div>Sorry, we will fix it soon...</div>
-            : <div>Loading...</div>
-      }
+      <FlexBox>
+        {!isMobile && <Order />}
+        {
+          res.response ?
+            <SectionContainer>
+              <SectionMenu>
+                <h2>Бургеры</h2>
+                <ListItem itemList={dbMenu.burger} />
+              </SectionMenu>
+              <SectionMenu>
+                <h2>Закуски / Напитки</h2>
+                <ListItem itemList={dbMenu.other} />
+              </SectionMenu>
+            </SectionContainer>
+            : res.error ?
+              <div>Sorry, we will fix it soon...</div>
+              : <div>Loading...</div>
+        }
+      </FlexBox>
     </MenuStyled >
   )
 }

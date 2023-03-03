@@ -73,8 +73,8 @@ export const OrderConfirm = () => {
 
 
     return (
-        <OverLay id="overlayOrderConfirm" onClick={closeModal}>
-            <Modal>
+        <OverLay id="overlayOrderConfirm" onClick={closeModal} style={{ zIndex: '31' }}>
+            <Modal style={{ zIndex: '32' }}>
                 <OrderTitle>{authentication.displayName + `'s (your) order`}</OrderTitle>
                 <Text>Підтвердження замовлення</Text>
                 <Total>

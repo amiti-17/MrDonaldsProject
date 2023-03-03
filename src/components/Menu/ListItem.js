@@ -7,12 +7,12 @@ const List = styled.ul`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 `;
 
 const Item = styled.li`
   position: relative;
-  width: 400px;
+  width: 95%;
   height: 155px;
   background-image: ${({ img }) => `url(${img})`};
   margin-top: 30px;
