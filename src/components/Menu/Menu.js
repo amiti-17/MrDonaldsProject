@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ListItem } from './ListItem';
 import { BannerMenu } from './BannerMenu';
 import { useFetch } from '../Hooks/useFetch';
-// import { useDB } from '../Hooks/useDB';
+import { useDB } from '../Hooks/useDB';
 
 const MenuStyled = styled.main`
   background-color: #ccc;
@@ -19,10 +19,10 @@ export const Menu = () => {
 
 
   // this way use useFetch to recieve data for Menu from server(hosting)
-  const res = useFetch();
+  //const res = useFetch();
 
   // this way use realTime FireBase dataStore to recieve data for Menu
-  // const res = useDB()
+  const res = useDB()
   // console.log(res)
 
 
