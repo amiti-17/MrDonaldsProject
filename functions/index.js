@@ -27,12 +27,12 @@ const sendOrderEmail = order => {
         <h2>Доброго дня</h2>
         <h3>Ваше замовлення: ${order.username}</h3>
         <ul>
-          ${order.order.map(({ name, price, count, choice, toppings }) => {
+          ${order.order.map(({ name, price, count }) => {
       return (`<li>${name}: ${count}шт. по ${price}грн. Вcього: ${count * price} грн.</li>`)
-    })}
+    }).join('')}
         </ul>
-        <p>Разом за це замовлення: ${order.order.reduce(({ price, count }) => {
-      return count * price
+        <p>Разом за це замовлення: ${order.order.reduce((accumulator, { price, count }) => {
+      return accumulator += count * price;
     }, 0)}</p>
         <small>Просто очікуйте на кур'єра</small>
         <small>Цей лист сформовано автоматично, для звернень до нас, пишіть на адрессу <a href="mailto:${process.env.EMAIL}"></a>${process.env.EMAIL}</a></small >
@@ -51,9 +51,21 @@ const sendOrderEmail = order => {
 }
 
 exports.sendUserEmail = functions.database.ref('orders/{pushId}')
-  .onUpdate((change, context) => {
+  .onWrite((change, context) => {
+    // exit, when data was delete
+    if (!change.after.exists()) {
+      return null;
+    }
     const order = change.after.val();
     functions.logger.log('SendingUsersEmail', context.params.pushId, order);
     // const previousValue = change.before.data();
     sendOrderEmail(order);
   })
+
+// exports.sendUserEmail = functions.database.ref('orders/{pushId}')
+//   .onCreate((change, context) => {
+//     const order = change.after.val();
+//     functions.logger.log('SendingUsersEmail', context.params.pushId, order);
+//     // const previousValue = change.before.data();
+//     sendOrderEmail(order);
+//   })
