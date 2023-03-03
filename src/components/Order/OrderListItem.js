@@ -44,14 +44,6 @@ const Toppings = styled.div`
 
 export const OrderListItem = ({ order, /*setOrders, orders*/ index, deleteItem }) => {
 
-  // const deleteItem = (e) => {
-  //   const newOrders = orders.slice();
-  //   const index = orders.indexOf(order);
-  //   newOrders.splice(index, 1)
-  //   // const newOrder = orders[index + 1] ? orders.concat(orders.slice(0, index), orders.slice(index + 1)) : orders.slice(0, index);
-  //   setOrders(newOrders)
-
-  // }
 
   const { openItem: { setOpenItem } } = useContext(Context)
 
@@ -60,7 +52,6 @@ export const OrderListItem = ({ order, /*setOrders, orders*/ index, deleteItem }
   const topping = order.topping.filter(dop => dop.checked).map(dop => dop.name).join(', ');
   return (
     <>
-      {/* < OrderItemStyled key={order.name} onClick={(e) => (e.target.tagName == 'BUTTON') ? {} : setOpenItem({ ...order, index })}> */}
       < OrderItemStyled key={order.name} onClick={(e) => (e.target !== refDeleteButton.current) && setOpenItem({ ...order, index })}>
         <ItemName>{order.name} {order.choice}</ItemName>
         <span>{order.count}</span>

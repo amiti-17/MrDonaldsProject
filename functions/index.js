@@ -1,6 +1,5 @@
 const nodemailer = require("nodemailer");
 const admin = require('firebase-admin');
-
 const functions = require("firebase-functions");
 //const htmlToText = require("nodemailer-html-to-text").htmlToText;
 

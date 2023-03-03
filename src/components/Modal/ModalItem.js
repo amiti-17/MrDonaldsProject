@@ -106,9 +106,7 @@ export const ModalItem = () => {
 
   const addToOrder = (e) => {
     setOrders([...orders, order]);
-    // console.log('openItem B:', openItem)
     setOpenItem(null);
-    // console.log('openItem A:', openItem)
   }
 
   return (

@@ -37,7 +37,6 @@ function App() {
   const database = getDatabase(firebaseApp);
   const auth = useAuth(authFirebase);
   const orderConfirm = useOrderConfirm()
-  // console.log('auth:', auth)
 
   return (
     <Context.Provider value={{ auth, openItem, orders, orderConfirm, database }}>

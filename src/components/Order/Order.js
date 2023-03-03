@@ -61,7 +61,6 @@ export const Order = () => {
     auth: { authentication, logIn }
   } = useContext(Context)
   const deleteItem = index => {
-    // const newOrders = orders.filter((item, i) => index !== i);
     const newOrders = [...orders];
     newOrders.splice(index, 1);
     setOrders(newOrders);
@@ -81,8 +80,6 @@ export const Order = () => {
               <OrderListItem
                 key={index}
                 order={order}
-                // orders={orders}
-                // setOrders={setOrders}
                 deleteItem={deleteItem}
                 index={index} />)}
           </OrderList> :

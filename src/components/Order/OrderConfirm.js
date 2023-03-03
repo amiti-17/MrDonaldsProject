@@ -47,10 +47,7 @@ export const OrderConfirm = () => {
     }
 
     const sendOrder = (orders, authentication) => {
-        // console.log('orders: ', orders)
         const newOrder = orders.map(projection(rulesData))
-        // console.log('newOrder: ', newOrder)
-        // console.log('authentication: ', authentication)
         writeUserData(authentication.uid, authentication.displayName, authentication.email, newOrder)
     };
 
