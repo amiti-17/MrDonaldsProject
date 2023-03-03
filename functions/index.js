@@ -1,11 +1,8 @@
-const dotenv = require('dotenv').config();
 const nodemailer = require("nodemailer");
 const admin = require('firebase-admin');
-const cors = require('cors')({ origin: true })
 
 const functions = require("firebase-functions");
-const htmlToText = require("nodemailer-html-to-text").htmlToText;
-// const { email, password } = require('./config')
+//const htmlToText = require("nodemailer-html-to-text").htmlToText;
 
 admin.initializeApp();
 
