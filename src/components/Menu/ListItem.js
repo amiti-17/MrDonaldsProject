@@ -15,7 +15,6 @@ const Item = styled.li`
   height: 155px;
   background-image: ${({ img }) => `url(${img})`};
   margin-top: 30px;
-  margin-right: 30px;
   padding: 20px;
   color: white;
   z-index: 1;

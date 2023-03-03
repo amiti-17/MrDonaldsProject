@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { GlobalStyle } from './components/Style/GlobalSyle';
 import { NavBar } from './components/NavBar/NavBar';
-import { Menu } from './components/Menu/Menu';
+import { Menu } from './components/Menu';
 import { ModalItem } from './components/Modal/ModalItem';
 import { Order } from './components/Order/Order';
 import { useOpenItem } from './components/Hooks/useOpenItem';
@@ -14,6 +14,7 @@ import { useTitle } from './components/Hooks/useTitle';
 import { OrderConfirm } from './components/Order/OrderConfirm';
 import { useOrderConfirm } from './components/Hooks/useOrderConfirm';
 import { Context } from './components/Functions/context';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBa7qlvpIJ3PU_5esIyF6xMPjs8apMQXGs",
