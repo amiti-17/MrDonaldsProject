@@ -26,7 +26,9 @@ export const OrderConfirm = () => {
         orders: { orders, setOrders },
         auth: { authentication },
         orderConfirm: { setOpenOrderConfirm },
-        database: firebaseDatabase
+        database: firebaseDatabase,
+        setModalEmail,
+        setShowModal,
     } = useContext(Context)
 
     const total = orders.reduce((result, order) => totalPriceItems(order) + result, 0);
@@ -71,7 +73,6 @@ export const OrderConfirm = () => {
 
     };
 
-
     return (
         <OverLay id="overlayOrderConfirm" onClick={closeModal} style={{ zIndex: '31' }}>
             <Modal style={{ zIndex: '32' }}>
@@ -85,6 +86,8 @@ export const OrderConfirm = () => {
                     sendOrder(orders, authentication);
                     setOrders([]);
                     setOpenOrderConfirm(false);
+                    setModalEmail(true);
+                    setShowModal(false);
                 }}>Замовити</ButtonCheckout>
 
             </Modal>

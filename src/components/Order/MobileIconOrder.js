@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import bagIcon from '../../image/bag.png';
 import { Order } from '.';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { Context } from '../Functions/context';
+import { useEffect } from 'react';
 
 const Container = styled.button`
   width: 70px;
@@ -35,7 +37,28 @@ const OrderContainer = styled.div`
 `;
 
 const BagIcon = () => {
-  const [showModal, setShowModal] = useState(null);
+  const { modalEmail, setModalEmail } = useContext(Context);
+
+  const [timerId, setTimerId] = useState(false);
+
+  const { showModal, setShowModal } = useContext(Context);
+
+  useEffect(() => {
+    if (timerId) {
+      clearTimeout(timerId);
+      setTimerId(false);
+    }
+    if (modalEmail === true) {
+      console.log('start 3s');
+      let timer = setTimeout(() => {
+        setModalEmail(false);
+        console.log('finish 3s');
+        setTimerId(false);
+      }, 3000);
+      setTimerId(timer);
+    }
+    setTimerId(false);
+  }, [modalEmail]);
 
   return (
     <>

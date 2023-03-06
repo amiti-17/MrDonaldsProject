@@ -30,10 +30,6 @@ const OrderContent = styled.div`
 `;
 
 
-const OrderList = styled.ul`
-
-`;
-
 export const Total = styled.div`
   display: flex;
   margin: 0px 35px 30px;
@@ -75,14 +71,14 @@ export const Order = () => {
       <OrderTitle>Ваш заказ</OrderTitle>
       <OrderContent>
         {orders.length ?
-          <OrderList>
+          <ul>
             {orders.map((order, index) =>
               <OrderListItem
                 key={index}
                 order={order}
                 deleteItem={deleteItem}
                 index={index} />)}
-          </OrderList> :
+          </ul> :
           <EmptyList>Список заказов - пуст</EmptyList>}
       </OrderContent>
       {

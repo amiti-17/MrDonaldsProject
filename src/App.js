@@ -18,6 +18,7 @@ import { usePopUp } from './components/Hooks/usePopUp';
 import { isMobile } from 'react-device-detect';
 import { useModalEmail } from './components/Hooks/useModalEmail';
 import { ModalEmail } from './components/Modal/ModalEmail';
+import { useShowModal } from './components/Hooks/useShowModal';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBa7qlvpIJ3PU_5esIyF6xMPjs8apMQXGs",
@@ -42,9 +43,10 @@ function App() {
   const auth = useAuth(authFirebase);
   const orderConfirm = useOrderConfirm();
   const { modalEmail, setModalEmail } = useModalEmail();
+  const { showModal, setShowModal } = useShowModal();
 
   return (
-    <Context.Provider value={{ auth, openItem, orders, orderConfirm, database, setPopUp, modalEmail, setModalEmail }}>
+    <Context.Provider value={{ auth, openItem, orders, orderConfirm, database, setPopUp, modalEmail, setModalEmail, showModal, setShowModal }}>
       <GlobalStyle />
       <NavBar />
       <Menu />
