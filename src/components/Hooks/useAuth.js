@@ -1,27 +1,20 @@
 import { useEffect, useState } from 'react'
 import { GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
-// import { useContext } from 'react';
-// import { Context } from '../Functions/context';
 
 
 export function useAuth(authFirebase) {
-
-  // const {
-  //   isHaveBeenLogin,
-  //   setIsHaveBeenLogin,
-  // } = useContext(Context);
 
   const [authentication, setAuthentication] = useState(null);
 
   const provider = new GoogleAuthProvider();
 
-  const logIn = () => {
+  const logIn = ({ isButtonOrder, setOpenOrderConfirm }) => {
     signInWithPopup(authFirebase, provider)
       .then((result) => {
-        console.warn('Sign - in successful.')
-        // if (isHaveBeenLogin && authentication) {
-        //   console.log("5");
-        // }
+        if (isButtonOrder) {
+          setOpenOrderConfirm(true);
+        }
+        console.warn('Sign - in successful.', isButtonOrder)
       }).catch((e) => {
         const errorCode = e.code;
         console.error('errorCode:', errorCode)
@@ -37,7 +30,6 @@ export function useAuth(authFirebase) {
   const logOut = () => {
     signOut(authFirebase)
       .then(() => {
-        // setIsHaveBeenLogin(false);
         console.warn('Sign - out successful.')
       }).catch((e) => {
         console.error(e)

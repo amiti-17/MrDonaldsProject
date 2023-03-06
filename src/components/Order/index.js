@@ -53,12 +53,13 @@ const EmptyList = styled.p`
 `;
 
 export const Order = () => {
+
   const {
     orders: { orders, setOrders },
     orderConfirm: { setOpenOrderConfirm },
     auth: { authentication, logIn },
-    setIsHaveBeenLogin,
   } = useContext(Context);
+
   const deleteItem = index => {
     const newOrders = [...orders];
     newOrders.splice(index, 1);
@@ -93,10 +94,9 @@ export const Order = () => {
           </Total>
             <ButtonCheckout onClick={() => {
               if (authentication) {
-                setOpenOrderConfirm(true)
+                setOpenOrderConfirm(true);
               } else {
-                setIsHaveBeenLogin(true);
-                logIn();
+                logIn({ isButtonOrder: true, setOpenOrderConfirm });
               }
             }}>Замовити</ButtonCheckout></>)
           : null

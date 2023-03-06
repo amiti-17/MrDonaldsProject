@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BagIcon from './components/Order/MobileIconOrder';
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -42,15 +42,14 @@ function App() {
   const auth = useAuth(authFirebase);
   const orderConfirm = useOrderConfirm();
   const { modalEmail, setModalEmail } = useModalEmail();
-  const [isHaveBeenLogin, setIsHaveBeenLogin] = useState(false);
 
   return (
-    <Context.Provider value={{ auth, openItem, orders, orderConfirm, database, setPopUp, modalEmail, setModalEmail, isHaveBeenLogin, setIsHaveBeenLogin }}>
+    <Context.Provider value={{ auth, openItem, orders, orderConfirm, database, setPopUp, modalEmail, setModalEmail }}>
       <GlobalStyle />
       <NavBar />
       <Menu />
       {openItem.openItem && <ModalItem />}
-      {isMobile && <BagIcon>Click</BagIcon>}
+      {isMobile && <BagIcon >Click</BagIcon>}
       {orderConfirm.openOrderConfirm && <OrderConfirm />}
       {PopUp && <PopUp />}
       {modalEmail && <ModalEmail />}
