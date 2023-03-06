@@ -6,7 +6,7 @@ This project you can found by url: https://mrdonalds-23ccc.web.app/
 
 - One of my proud in this project is the implementation of firebase, especially: Realtime Database, Functions, Authentication, and Hosting. Below I want to demonstrate the work of some of them, exactly one of the functionality of this project is when you make an order, on your email you receive an email with the order detail.
 
-  - ![It`s first picture](/src/image/imageForReadme/1.png, 'Title')
+  - ![It`s first picture](/src/image/imageForReadme/1.png 'Title')
 
 - This project was initially created as a way to learn React.js and gain an understanding of how it works. This should explain its appearance. However, as the project progressed, it became a valuable addition to my resume. Despite this, I have set a personal goal to implement a mobile version of the project.
 
