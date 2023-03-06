@@ -25,20 +25,36 @@ const sendOrderEmail = order => {
     html: `
       <div>
         <h2>Доброго дня</h2>
-        <h3>Ваше замовлення: ${order.username}</h3>
+        <h3>Ваше замовлення, ${order.username}:</h3>
         <ul>
-          ${order.order.map(({ name, price, count }) => {
-      return (`<li>${name}: ${count}шт. по ${price}грн. Вcього: ${count * price} грн.</li>`)
+          ${order.order.map(({ name, price, count, choice, toppings }) => {
+      return (`<li>
+              ${name}: ${count}шт. по ${price}грн. Вcього: ${count * price} грн. <br>
+              ${(() => {
+          if (toppings === "no toppings") {
+            return "It`s don`t have any toppings <br>"
+          } else {
+            return `You ordered follow toppings: ${toppings.join(', ')} <br>`
+          }
+        })()}
+              ${(() => {
+          if (choice === "no choices") {
+            return "It`s don`t have any choices <br>"
+          } else {
+            return `You ordered this choice: ${choice} <br>`
+          }
+        })()} <br>
+            </li>`)
     }).join('')}
         </ul>
         <p>Разом за це замовлення: ${order.order.reduce((accumulator, { price, count }) => {
       return accumulator += count * price;
-    }, 0)}</p>
+    }, 0)} грн.</p>
         <small>Просто очікуйте на кур'єра</small>
         <small>Цей лист сформовано автоматично, для звернень до нас, пишіть на адрессу <a href="mailto:${process.env.EMAIL}"></a>${process.env.EMAIL}</a></small >
       </div >
   `,
-    text: 'some text',
+    text: 'You cann`t see it)',
   }
   console.log(options)
   transporter.sendMail(options, function (err, data) {
@@ -61,11 +77,3 @@ exports.sendUserEmail = functions.database.ref('orders/{pushId}')
     // const previousValue = change.before.data();
     sendOrderEmail(order);
   })
-
-// exports.sendUserEmail = functions.database.ref('orders/{pushId}')
-//   .onCreate((change, context) => {
-//     const order = change.after.val();
-//     functions.logger.log('SendingUsersEmail', context.params.pushId, order);
-//     // const previousValue = change.before.data();
-//     sendOrderEmail(order);
-//   })

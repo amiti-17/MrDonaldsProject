@@ -1,10 +1,10 @@
-This project is located: https://mrdonalds-23ccc.web.app/
-
 # MrDonaldsProject
 
-I'm taking a React course.
+This project you can found by url: https://mrdonalds-23ccc.web.app/
 
-# Getting Started with Create React App
+# Here I will present several implemented possibilities:
+
+# If you wanna download the source code to your system, this some tips on how to run it:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
