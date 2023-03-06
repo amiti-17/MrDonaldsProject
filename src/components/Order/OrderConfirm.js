@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { OverLay } from "../Modal/ModalItem";
-import { OrderTitle, Total, TotalPrice } from "./Order";
+import { OverLay } from "../Modal";
+import { OrderTitle, Total, TotalPrice } from ".";
 import { ButtonCheckout } from "../Style/ButtonCheckout";
 import { projection } from '../Functions/secondaryfunctions';
 import { totalPriceItems } from '../Functions/secondaryfunctions';

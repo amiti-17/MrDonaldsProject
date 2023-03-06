@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Context } from "../Functions/context";
-import { OverLay } from "./ModalItem";
+import { OverLay } from ".";
 
 
 export const ModalEmail = () => {

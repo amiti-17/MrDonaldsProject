@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import bagIcon from '../../image/bag.png';
-import { Order } from './Order';
+import { Order } from '.';
 import { useState } from 'react';
 
 const Container = styled.button`

@@ -26,6 +26,8 @@ This project you can found by url: https://mrdonalds-23ccc.web.app/
 
     ![View of email with order that you have ordered](/src/image/imageForReadme/5.png 'Email with order and its  details')
 
+- One of the features of my project is the ability to edit any items in your order after you have selected them but before you have completed your order. This feature is not currently marked in the user interface, except that the mouse cursor changes to a pointer when you hover over an element that can be edited.
+
 - This project was initially created as a way to learn React.js and gain an understanding of how it works. This explains its appearance. However, as the project progressed, it became a valuable addition to my resume. Despite this, I have set a personal goal to implement a mobile version of the project.
 
 # If you wanna download the source code to your system, this some tips on how to run it:

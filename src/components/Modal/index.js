@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Style/ButtonCheckout';
-import { CountItem } from './CountItem';
-import { useCount } from '../Hooks/useCount';
 import { toLocaleCurrency } from '../Functions/secondaryfunctions';
 import { totalPriceItems } from '../Functions/secondaryfunctions';
-import { Toppings } from './Toppings';
-import { Choices } from './Choices';
+import { Context } from '../Functions/context';
 import { useToppings } from '../Hooks/useToppings';
 import { useChoices } from '../Hooks/useChoices';
-import { Context } from '../Functions/context';
+import { useCount } from '../Hooks/useCount';
+import { Toppings } from './Toppings';
+import { Choices } from './Choices';
+import { CountItem } from './CountItem';
 
 export const OverLay = styled.div`
   position: fixed;

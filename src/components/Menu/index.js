@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ListItem } from './ListItem';
 import { BannerMenu } from './BannerMenu';
 import { useDB } from '../Hooks/useDB';
-import { Order } from '../Order/Order';
+import { Order } from '../Order';
 import { isMobile } from 'react-device-detect';
 
 const MenuStyled = styled.main`
