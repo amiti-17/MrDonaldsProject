@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { GlobalStyle } from './components/Style/GlobalSyle';
@@ -16,6 +16,8 @@ import { Context } from './components/Functions/context';
 import { usePopUp } from './components/Hooks/usePopUp';
 import BagIcon from './components/Order/MobileIconOrder';
 import { isMobile } from 'react-device-detect';
+import { useModalEmail } from './components/Hooks/useModalEmail';
+import { ModalEmail } from './components/Modal/ModalEmail';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBa7qlvpIJ3PU_5esIyF6xMPjs8apMQXGs",
@@ -38,10 +40,12 @@ function App() {
   const authFirebase = getAuth(firebaseApp);
   const database = getDatabase(firebaseApp);
   const auth = useAuth(authFirebase);
-  const orderConfirm = useOrderConfirm()
+  const orderConfirm = useOrderConfirm();
+  const { modalEmail, setModalEmail } = useModalEmail();
+  const [isHaveBeenLogin, setIsHaveBeenLogin] = useState(false);
 
   return (
-    <Context.Provider value={{ auth, openItem, orders, orderConfirm, database, setPopUp }}>
+    <Context.Provider value={{ auth, openItem, orders, orderConfirm, database, setPopUp, modalEmail, setModalEmail, isHaveBeenLogin, setIsHaveBeenLogin }}>
       <GlobalStyle />
       <NavBar />
       <Menu />
@@ -49,6 +53,7 @@ function App() {
       {isMobile && <BagIcon>Click</BagIcon>}
       {orderConfirm.openOrderConfirm && <OrderConfirm />}
       {PopUp && <PopUp />}
+      {modalEmail && <ModalEmail />}
     </Context.Provider>
   );
 }

@@ -56,8 +56,9 @@ export const Order = () => {
   const {
     orders: { orders, setOrders },
     orderConfirm: { setOpenOrderConfirm },
-    auth: { authentication, logIn }
-  } = useContext(Context)
+    auth: { authentication, logIn },
+    setIsHaveBeenLogin,
+  } = useContext(Context);
   const deleteItem = index => {
     const newOrders = [...orders];
     newOrders.splice(index, 1);
@@ -94,6 +95,7 @@ export const Order = () => {
               if (authentication) {
                 setOpenOrderConfirm(true)
               } else {
+                setIsHaveBeenLogin(true);
                 logIn();
               }
             }}>Замовити</ButtonCheckout></>)
