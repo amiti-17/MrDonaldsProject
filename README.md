@@ -4,12 +4,29 @@ This project you can found by url: https://mrdonalds-23ccc.web.app/
 
 # Here I will present several implemented possibilities:
 
-- One of my proud in this project is the implementation of firebase, especially: Realtime Database, Functions, Authentication, and Hosting. Below I want to demonstrate the work of some of them, exactly one of the functionality of this project is when you make an order, on your email you receive an email with the order detail.
+- One of my proudest achievements in this project is the implementation of Firebase, including Realtime Database, Functions, Authentication, and Hosting. One of the functionalities of this project is that when you make an order, you receive an email with the order details.
 
-  - In this picture you can find out my project in his current view, hope it will be better soon.
-    ![It`s first picture](/src/image/imageForReadme/1.png 'Title')
+  - In this picture, you can see my project in its current view. I hope to improve it further in the future.
 
-- This project was initially created as a way to learn React.js and gain an understanding of how it works. This should explain its appearance. However, as the project progressed, it became a valuable addition to my resume. Despite this, I have set a personal goal to implement a mobile version of the project.
+    ![My project when you first open it](/src/image/imageForReadme/1.png 'This project when you first open it')
+
+  - After you try to order something, the system will ask you to log in. In the picture below, you will see what it looks like when you have already login.
+
+    ![My project when you log in](/src/image/imageForReadme/2.png 'The project after you successfully logged in')
+
+  - If you are already logged in, you can make your first order. In the picture below, you can see what the modal window looks like when you edit an item from the menu.
+
+    ![View of my project when you try to order something](/src/image/imageForReadme/3.png 'Modal window editing an item')
+
+  - When you have decided what you want to order, my project will look like the picture below.
+
+    ![View of my project when you have decided what will ordered](/src/image/imageForReadme/4.png 'The project after you have decided to order')
+
+  - Now you can check your email for a letter from my work email address. There, you will find your order details, as shown in the picture below.
+
+    ![View of email with order that you have ordered](/src/image/imageForReadme/5.png 'Email with order and its  details')
+
+- This project was initially created as a way to learn React.js and gain an understanding of how it works. This explains its appearance. However, as the project progressed, it became a valuable addition to my resume. Despite this, I have set a personal goal to implement a mobile version of the project.
 
 # If you wanna download the source code to your system, this some tips on how to run it:
 
