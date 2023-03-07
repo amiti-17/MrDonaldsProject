@@ -13,6 +13,10 @@ const MenuStyled = styled.main`
 
 const FlexBox = styled.div`
   display: flex;
+  flex-direction: row;
+  & li {
+    border-radius: 5px;
+  }
 `;
 
 const FlexBoxMobile = styled.div`

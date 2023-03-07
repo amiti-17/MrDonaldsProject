@@ -13,6 +13,8 @@ const List = styled.ul`
 const Item = styled.li`
   position: relative;
   width: 95%;
+  max-width: 435px;
+  min-width: 230px;
   height: 155px;
   background-image: ${({ img }) => `url(${img})`};
   margin-top: 30px;
@@ -20,6 +22,8 @@ const Item = styled.li`
   color: white;
   z-index: 1;
   font-size: 30px;
+  border-radius: 5px;
+  transition: all 1s easy;
   &:after {
     content: '';
     position: absolute;
@@ -30,6 +34,7 @@ const Item = styled.li`
     background-color: black;
     opacity: 30%;
     z-index: -1;
+    border-radius: 5px;
   }
   &:hover {
     cursor: pointer;
