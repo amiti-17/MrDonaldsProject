@@ -68,7 +68,7 @@ export const Order = () => {
 
   return (
     <OrderStyled>
-      <OrderTitle>Ваш заказ</OrderTitle>
+      <OrderTitle>Ваше замовлення</OrderTitle>
       <OrderContent>
         {orders.length ?
           <ul>
@@ -79,12 +79,12 @@ export const Order = () => {
                 deleteItem={deleteItem}
                 index={index} />)}
           </ul> :
-          <EmptyList>Список заказов - пуст</EmptyList>}
+          <EmptyList>Список замовлення - пустий</EmptyList>}
       </OrderContent>
       {
         orders.length ?
           (<><Total>
-            <span>Итого</span>
+            <span>Всього</span>
             <span>{totalCounter}</span>
             <TotalPrice>{toLocaleCurrency(total)}</TotalPrice>
           </Total>

@@ -45,11 +45,11 @@ export const Menu = () => {
           res.response ?
             <SectionContainer>
               <SectionMenu>
-                <h2>Бургеры</h2>
+                <h2>Бургери</h2>
                 <ListItem itemList={dbMenu.burger} />
               </SectionMenu>
               <SectionMenu>
-                <h2>Закуски / Напитки</h2>
+                <h2>Закуски / Напої</h2>
                 <ListItem itemList={dbMenu.other} />
               </SectionMenu>
             </SectionContainer>
