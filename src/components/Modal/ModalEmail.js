@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../Functions/context";
 import { OverLay } from ".";
 import styled from "styled-components";
@@ -30,7 +30,17 @@ const ImageForOk = styled.img`
 `;
 
 export const ModalEmail = () => {
-  const { setModalEmail } = useContext(Context)
+
+  const { setModalEmail } = useContext(Context);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('start 3');
+      setModalEmail(false);
+      console.log('Finish 3');
+    }, 3000)
+  }, [setModalEmail])
+
   return (
     <OverLay onClick={() => setModalEmail(false)}>
       <MainModalWindow>
