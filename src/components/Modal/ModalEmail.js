@@ -16,6 +16,7 @@ const MainModalWindow = styled.div`
   justify-content: space-between;
   border-radius: 5%;
   gap: 15px;
+  transition: display 1s ease-out;
 `;
 
 const Paragraf = styled.p`
@@ -34,12 +35,9 @@ export const ModalEmail = () => {
   const { setModalEmail } = useContext(Context);
 
   useEffect(() => {
-    setTimeout(() => {
-      console.log('start 3');
-      setModalEmail(false);
-      console.log('Finish 3');
-    }, 3000)
-  }, [setModalEmail])
+    //setTimeout(() => displayNameFlexNone = "none", 2000)
+    setTimeout(() => setModalEmail(false), 3000)
+  }, [setModalEmail]);
 
   return (
     <OverLay onClick={() => setModalEmail(false)}>

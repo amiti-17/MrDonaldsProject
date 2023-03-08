@@ -23,7 +23,6 @@ const Item = styled.li`
   z-index: 1;
   font-size: 30px;
   border-radius: 5px;
-  transition: all 1s easy;
   &:after {
     content: '';
     position: absolute;
@@ -41,6 +40,7 @@ const Item = styled.li`
     box-shadow: inset 0 0 50px 30px rgba(0,0,0,0.4);
     &:after {
       opacity: 0;
+      transition: all 1s ease-out;
     }
   }
 `;
