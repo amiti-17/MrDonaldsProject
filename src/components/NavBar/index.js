@@ -57,7 +57,10 @@ const Figcaption = styled.figcaption`
   box-sizing: content-box;
   overflow: hidden;
   max-width: 50px;
+<<<<<<< HEAD
   max-height: 28px;
+=======
+>>>>>>> 76dad3f5d7d3eb847f2167cf75e95ba2eaef0cec
 `;
 
 const Login = styled.button`
