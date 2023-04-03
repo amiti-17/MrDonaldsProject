@@ -14,7 +14,8 @@ const OrderStyled = styled.section`
   background: white;
   min-width: 380px;
   max-width: 380px;
-  height: 68vh;
+  min-height: 68vh;
+  height: 100%;
   box-shadow: 3px 4px 5px rgba(0,0,0, 0.25);
   padding: 20px;
   overflow: auto;
@@ -32,7 +33,7 @@ const OrderContent = styled.div`
 
 export const Total = styled.div`
   display: flex;
-  margin: 0px 35px 30px;
+  margin: 10px 35px 30px;
   & span:first-child {
     flex-grow: 1;
   }
@@ -47,6 +48,13 @@ export const TotalPrice = styled.span`
 const EmptyList = styled.p`
   text-align: center;
 `;
+
+const LocalButtonCheckout = styled(ButtonCheckout)`
+@media (max-width: 768px) {
+    position: relative;
+    right: 15px;
+  }
+`
 
 export const Order = () => {
 
@@ -88,13 +96,13 @@ export const Order = () => {
             <span>{totalCounter}</span>
             <TotalPrice>{toLocaleCurrency(total)}</TotalPrice>
           </Total>
-            <ButtonCheckout onClick={() => {
+            <LocalButtonCheckout onClick={() => {
               if (authentication) {
                 setOpenOrderConfirm(true);
               } else {
                 logIn({ isButtonOrder: true, setOpenOrderConfirm });
               }
-            }}>Замовити</ButtonCheckout></>)
+            }}>Замовити</LocalButtonCheckout></>)
           : null
       }
     </OrderStyled>

@@ -14,8 +14,8 @@ const NavBarStyled = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  background-color: #299B01;
-  color: white;
+  background-color: #e3f7e9;
+  color: #354641;
   height: 80px;
 `;
 
@@ -45,10 +45,19 @@ const LogOut = styled.span`
   font-weight: 700px;
   cursor: pointer;
   margin-right: 30px;
+  @media (max-width: 450px) {
+    margin-right: 15px;
+  }
 `;
 
 const Figure = styled.figure`
   margin: 0px 25px;
+`;
+
+const Figcaption = styled.figcaption`
+  box-sizing: content-box;
+  overflow: hidden;
+  max-width: 50px;
 `;
 
 const Login = styled.button`
@@ -78,7 +87,7 @@ export const NavBar = () => {
         <User>
           <Figure>
             <img src={signInImg} alt={authentication.displayName} />
-            <figcaption>{authentication.displayName}</figcaption>
+            <Figcaption>{authentication.displayName}</Figcaption>
           </Figure>
           <LogOut title="Вийти" onClick={logOut}>X</LogOut>
         </User>

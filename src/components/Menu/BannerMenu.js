@@ -8,6 +8,9 @@ const BannerMenuStyled = styled.div`
   background-image: url(${banner});
   background-position: center;
   background-size: cover;
+  @media (max-width: 450px) {
+    height: 150px;
+  }
 `;
 export const BannerMenu = () => (
   <BannerMenuStyled />
