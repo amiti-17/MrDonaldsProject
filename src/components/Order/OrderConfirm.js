@@ -20,6 +20,13 @@ const Text = styled.h3`
     margin-bottom: 30px;
 `;
 
+const LocalOverLay = styled(OverLay)`
+    z-index: 31;
+    @media (orientation: landscape) and (max-height: 450px){
+        padding: 50px 0px 0px;
+    }
+`
+
 
 export const OrderConfirm = () => {
     const {
@@ -74,7 +81,7 @@ export const OrderConfirm = () => {
     };
 
     return (
-        <OverLay id="overlayOrderConfirm" onClick={closeModal} style={{ zIndex: '31' }}>
+        <LocalOverLay id="overlayOrderConfirm" onClick={closeModal}>
             <Modal style={{ zIndex: '32' }}>
                 <OrderTitle>{authentication.displayName + `'s (your) order`}</OrderTitle>
                 <Text>Підтвердження замовлення</Text>
@@ -91,6 +98,6 @@ export const OrderConfirm = () => {
                 }}>Замовити</ButtonCheckout>
 
             </Modal>
-        </OverLay>
+        </LocalOverLay>
     )
 }

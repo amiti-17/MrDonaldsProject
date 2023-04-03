@@ -22,12 +22,28 @@ export const OverLay = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, .5);
   z-index: 20;
+  @media (orientation: landscape) and (max-height: 450px) {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    background-color: #fff;
+  }
 `;
 
 export const Modal = styled.div`
   background-color: #fff;
   width: 600px;
   height: 600px;
+  @media (orientation: landscape) and (max-height: 450px) {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    padding: 10px;
+    z-index: 1000;
+    box-sizing: border-box;
+  }
 `;
 
 const Banner = styled.div`
@@ -75,6 +91,13 @@ const TotalPriceItem = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+const LocalButtonCheckout = styled(ButtonCheckout)`
+  @media (orientation: landscape) and (max-height: 450px) {
+    margin: 10px;
+    box-sizing: border-box;
+  }
+`
 
 export const ModalItem = () => {
   const { orders: { orders, setOrders }, openItem: { setOpenItem, openItem } } = useContext(Context);
@@ -125,7 +148,7 @@ export const ModalItem = () => {
             <span>Ціна: </span>
             <span>{toLocaleCurrency(totalPriceItems(order))}</span>
           </TotalPriceItem>
-          <ButtonCheckout onClick={isEdit ? editOrder : addToOrder} disabled={order.choices && !order.choice}>{isEdit ? "Редагувати" : "Додати"}</ButtonCheckout>
+          <LocalButtonCheckout onClick={isEdit ? editOrder : addToOrder} disabled={order.choices && !order.choice}>{isEdit ? "Редагувати" : "Додати"}</LocalButtonCheckout>
         </Content>
       </Modal>
     </OverLay >

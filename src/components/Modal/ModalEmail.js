@@ -17,6 +17,13 @@ const MainModalWindow = styled.div`
   border-radius: 5%;
   gap: 15px;
   transition: display 1s ease-out;
+  @media (orientation: landscape) {
+    width: 5px;
+  }
+  @media (orientation: portrait) and (max-width: 450px) {
+    height: 40%;
+    justify-content: space-around;
+  }
 `;
 
 const Paragraf = styled.p`
