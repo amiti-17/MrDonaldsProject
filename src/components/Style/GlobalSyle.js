@@ -18,6 +18,8 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Roboto, sans-serif;
     font-size: 20px;
     color black;
+    max-width: 1200px;
+    margin: 0px auto;
   }
   
   img {

@@ -17,6 +17,13 @@ const NavBarStyled = styled.header`
   background-color: #e3f7e9;
   color: #354641;
   height: 80px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+    left: auto; 
+    right: auto
+  }
 `;
 
 const Logo = styled.div`
